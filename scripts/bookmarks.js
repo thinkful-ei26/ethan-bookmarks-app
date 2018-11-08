@@ -51,6 +51,7 @@ const Bookmarks = (function (){
       <div>${object.rating}</div>
       <div>${object.url}</div>
       <div>${object.description}</div>
+      <button type="button" id="delete">Delete Bookmark</button>
     </li>
     `;
   }
@@ -88,9 +89,29 @@ const Bookmarks = (function (){
     });
   }
 
+  function getItemIdFromElement(item) {
+    return $(item)
+      .closest('.bookmark-item-element')
+      .data('item-id');
+  }
+
+  function deleteBookmark(){
+    $('ul').on('click', '#delete', function(event){
+      console.log('delete handler worked');
+      const id = getItemIdFromElement(event.currentTarget);
+      API.deleteBookmark(id, function (){
+        
+        render();
+      }
+      );
+
+    });
+  }
+
 
   function bindEventListeners(){
     newBookmarkSubmit();
+    deleteBookmark();
   }
   // $(newBookmarkSubmit);
 

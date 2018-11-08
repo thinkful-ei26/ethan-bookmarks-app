@@ -24,6 +24,7 @@ const API = (function (){
   };
 
   const deleteBookmark = function(id, callback){
+    console.log('delete API fired');
     $.ajax({
       url: `${BASE_URL}/${id}`,
       method: 'DELETE',
