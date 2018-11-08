@@ -30,6 +30,10 @@ button:hover:disabled {
   margin-bottom: 15px;
 }
 
+.bookmark-item-element {
+  margin-bottom: 20px
+}
+
 li {
   list-style: none;
 }
