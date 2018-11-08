@@ -3,10 +3,11 @@
 /* global store, API $ */
 
 const API = (function (){
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/ethan/bookmarks';
+  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/ethan/bookmarks/';
 
   const getBookmarks = function(callback) {
     $.getJSON(`${BASE_URL}`, callback);
+    console.log('getBookmarks call made');
   };
 
   const createBookmark = function(newItemObject, callback) {
