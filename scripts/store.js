@@ -41,9 +41,20 @@ const STORE = (function(){
     // console.log(STORE.bookmarks);
   };
 
+  const findItemByID = function (id){
+    STORE.bookmarks.filter(bookmark => bookmark.id !== id);
+  };
+
+
+  const deleteBookmark = function (id){
+    this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
+    console.log(this.bookmarks);
+  };
+
   return {
     bookmarks: [],
     addBookmark,
+    deleteBookmark,
     addItem: false,
     errorReturn: false,
     filteredByRating: null

@@ -100,11 +100,9 @@ const Bookmarks = (function (){
       console.log('delete handler worked');
       const id = getItemIdFromElement(event.currentTarget);
       API.deleteBookmark(id, function (){
-        
+        STORE.deleteBookmark(id);
         render();
-      }
-      );
-
+      });
     });
   }
 
