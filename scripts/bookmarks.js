@@ -81,7 +81,7 @@ const Bookmarks = (function (){
       console.log('new item handler worked');
       const result = $(event.target).serializeJson();
       API.createBookmark(result, (newBookmark) => {
-        //STORE.createItemInStore(newBookmark);
+        STORE.addBookmark(newBookmark);
         render();
       });
       console.log(result);

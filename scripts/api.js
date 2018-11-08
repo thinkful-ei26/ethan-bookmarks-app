@@ -11,12 +11,13 @@ const API = (function (){
   };
 
   const createBookmark = function(newItemObject, callback) {
-    const newItem = JSON.stringify(newItemObject);
+    // const newItem = JSON.stringify(newItemObject);
+    console.log(newItemObject);
     $.ajax({
       url: `${BASE_URL}`,
       method: 'POST',
       contentType: 'application/json',
-      data: newItem,
+      data: newItemObject,
       success: callback,
       error: error => console.error(error.responseJSON.method)
     });
