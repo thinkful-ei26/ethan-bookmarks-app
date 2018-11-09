@@ -61,11 +61,13 @@ const Bookmarks = (function (){
     if (object.expanded && object.rating){
       return `
       <li class='bookmark-item-element' data-item-id='${object.id}'>
-        <div>${object.title}</div>
-        <div>Rating: ${object.rating}</div>
-        <div><a href="${object.url}">Visit Site</a></div>
-        <div>${object.desc}</div>
-        <button type="button" id="delete">Delete Bookmark</button>
+        <ul>
+          <li>${object.title}</li>
+          <li>Rating: ${object.rating}</li>
+          <li><a href="${object.url}">Visit Site</a></li>
+          <li>${object.desc}</li>
+          <li><button type="button" id="delete">Delete Bookmark</button></li>
+        </ul>  
       </li>
       `;
     } else if(object.expanded && !object.rating){
@@ -83,13 +85,15 @@ const Bookmarks = (function (){
         <li class='bookmark-item-element' data-item-id='${object.id}'>
           <div>${object.title}</div>
           <div>Rating: ${object.rating}</div>
-        </li>`;
+        </li>
+        `;
     } else {
       return ` 
         <li class='bookmark-item-element' data-item-id='${object.id}'>
           <div>${object.title}</div>
           <div>No rating yet :(</div>
-        </li>`;
+        </li>
+        `;
     }
   } 
 
@@ -208,7 +212,7 @@ const Bookmarks = (function (){
   }
 
   function expandBookmarkOnClick (){
-    $('ul').on('click', 'li', function (event){
+    $('ul').on('click', '.bookmark-item-element', function (event){
       // console.log('listener fired');
       const id = getItemIdFromElement(event.currentTarget);
       // console.log(id);

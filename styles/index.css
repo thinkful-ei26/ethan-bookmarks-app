@@ -10,8 +10,28 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-#add-bookmark{
-  margin: 0 auto
+h1 {
+  /* margin-top: 5%; */
+  /* margin: 0 auto; */
+  /* text-align: center; */
+  margin-inline-start: 18%;
+}
+
+ul > li > ul {
+  padding-inline-start: 0px;
+}
+
+#add-bookmark, .item-rating-container{
+  margin: 0 auto;
+  margin-inline-start: 40px;
+}
+
+input[type=submit] {
+  padding: 5px
+}
+
+select {
+  padding: 5px
 }
 
 a {
@@ -42,20 +62,19 @@ button:hover:disabled {
 .bookmark-item {
   margin: 0 auto;
   display: block;
-  color: white;
   font-size: 20px;
   margin-bottom: 15px;
 }
 
 .bookmark-item-element {
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  border: solid 2px;
+  width: 50%;
 }
 
 li {
   list-style: none;
-  border: solid 2px;
-  width: 50%;
-  text-align: center
+  text-align: center;
 }
 
 .error-containter {

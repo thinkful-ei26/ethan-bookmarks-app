@@ -1,7 +1,31 @@
 <li class='bookmark-item-element' data-item-id='${object.id}'>
-    <div>${object.title}</div>
-    <div>${object.rating}</div>
-    <div><a href="${object.url}">Visit Site</a></div>
-    <div>${object.desc}</div>
-    <button type="button" id="delete">Delete Bookmark</button>
-  </li>
+  <ul>
+    <li>${object.title}</li>
+    <li>Rating: ${object.rating}</li>
+    <li><a href="${object.url}">Visit Site</a></li>
+    <li>${object.desc}</li>
+    <li><button type="button" id="delete">Delete Bookmark</button></li>
+  </ul>  
+</li>
+
+
+
+  <li class='bookmark-item-element' data-item-id='${object.id}'>
+      <div>${object.title}</div>
+      <div>No rating yet :(</div>
+      <div><a href="${object.url}">Visit Site</a></div>
+      <div>${object.desc}</div>
+      <button type="button" id="delete">Delete Bookmark</button>
+    </li>
+
+
+    <li class='bookmark-item-element' data-item-id='${object.id}'>
+        <div>${object.title}</div>
+        <div>Rating: ${object.rating}</div>
+      </li>
+
+
+      <li class='bookmark-item-element' data-item-id='${object.id}'>
+          <div>${object.title}</div>
+          <div>No rating yet :(</div>
+        </li>
