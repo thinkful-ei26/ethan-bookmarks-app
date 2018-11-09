@@ -4,38 +4,6 @@
 
 const Bookmarks = (function (){
 
-  // const testData = [
-  //   {
-  //     name: 'title',
-  //     url: 'url',
-  //     rating: 1,
-  //     description: 'description',
-  //     expanded: false
-  //   },
-  //   {
-  //     name: 'title',
-  //     url: 'url',
-  //     rating: 1,
-  //     description: 'description',
-  //     expanded: false
-  //   },
-  //   {
-  //     id: '8sdfbvbs65sd',
-  //     name: 'Google',
-  //     url: 'http://google.com',
-  //     rating: 4,
-  //     description: 'An indie search engine startup'
-      
-  //   },
-  //   {
-  //     id: '87fn36vd9djd',
-  //     name: 'Fluffiest Cats in the World',
-  //     url: 'http://medium.com/bloggerx/fluffiest-cats-334',
-  //     rating: 5,
-  //     description: 'The only list of fluffy cats online'
-  //   }
-  // ];
-
   function generateError(err) {
     let message = '';
     if (err.responseJSON && err.responseJSON.message) {
@@ -84,17 +52,21 @@ const Bookmarks = (function (){
       `;
     } else if (object.rating) {
       return ` 
-        <li class='bookmark-item-element' data-item-id='${object.id}'>
-          <div>${object.title}</div>
-          <div>Rating: ${object.rating}</div>
-        </li>
+      <li class='bookmark-item-element' data-item-id='${object.id}'>
+        <ul>
+          <li>${object.title}</li>
+          <li>Rating: ${object.rating}</li>
+        </ul>  
+      </li>
         `;
     } else {
       return ` 
-        <li class='bookmark-item-element' data-item-id='${object.id}'>
-          <div>${object.title}</div>
-          <div>No rating yet :(</div>
-        </li>
+      <li class='bookmark-item-element' data-item-id='${object.id}'>
+        <ul>
+          <li>${object.title}</li>
+          <li>No rating yet :(</li>
+        </ul>  
+      </li>
         `;
     }
   } 
