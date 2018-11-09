@@ -10,5 +10,4 @@ $(document).ready(function() {
     bookmarkItems.forEach((bookmark) => STORE.addBookmark(bookmark));
     Bookmarks.render();
   });
-  //get items function will need to go here
 });

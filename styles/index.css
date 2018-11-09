@@ -4,6 +4,18 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  background-image: url("https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0c21b1ac3066ae4d354a3b2e0064c8be&auto=format&fit=crop&w=1350&q=80");
+  background-repeat: no-repeat;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+}
+
+#add-bookmark{
+  margin: 0 auto
+}
+
+a {
+  color: orangered
 }
 
 button, input[type="text"] {
@@ -22,10 +34,15 @@ button:hover:disabled {
   display: none;
 }
 
+.bookmark-results {
+  margin: 0 auto;
+}
+
+
 .bookmark-item {
+  margin: 0 auto;
   display: block;
-  color: grey;
-  font-style: italic;
+  color: white;
   font-size: 20px;
   margin-bottom: 15px;
 }
@@ -36,7 +53,7 @@ button:hover:disabled {
 
 li {
   list-style: none;
-  border: solid 5px;
+  border: solid 2px;
   width: 50%;
   text-align: center
 }

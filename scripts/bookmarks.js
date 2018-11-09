@@ -130,6 +130,7 @@ const Bookmarks = (function (){
       <input type="radio" name="rating" id="rating-2" value="2"> 2 <br>
       <input type="radio" name="rating" id="rating-1" value="1"> 1 <br>
     <input type="submit" id="new-item" value="Submit">
+    <button type="button" id="hide">Hide Form</button>
   </form>
     `;
   }
@@ -162,19 +163,28 @@ const Bookmarks = (function (){
       event.preventDefault();
       // console.log('new item handler worked');
       const result = $(event.target).serializeJson();
-      API.createBookmark(result, (newBookmark) => {
+      API.createBookmark(result, function (newBookmark) {
         STORE.addBookmark(newBookmark);
         STORE.addItem = false;
-        console.log(STORE.addItem);
+        // console.log(STORE.addItem);
+        STORE.setError(null);
         render();
       }, 
-      (err) => {
+      function (err) {
         console.log(err);
         STORE.setError(err);
         render();
       }
       );
-      // console.log(result);
+    });
+  }
+
+  function hideNewBookmarkForm(){
+    $('.new-item-form-container').on('click', '#hide', function(){
+      STORE.addItem = false;
+      STORE.setError(null);
+      console.log(STORE.setError);
+      render();
     });
   }
 
@@ -230,6 +240,7 @@ const Bookmarks = (function (){
   function bindEventListeners(){
     newBookmarkForm();
     newBookmarkSubmit();
+    hideNewBookmarkForm();
     deleteBookmark();
     minimumRatingSubmit();
     minimumRatingClear();
