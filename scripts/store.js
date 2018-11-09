@@ -2,7 +2,7 @@
 /*eslint-env jquery*/
 
 const STORE = (function(){
-  const bookmarks = [
+  const testBookmarks = [
     // {
     //   name: 'title',
     //   url: 'url',
@@ -41,12 +41,16 @@ const STORE = (function(){
   };
 
   const addBookmark = function(bookmark){
+    bookmark.expanded = false;
     STORE.bookmarks.push(bookmark);
     // console.log(STORE.bookmarks);
   };
 
   const findItemByID = function (id){
-    STORE.bookmarks.filter(bookmark => bookmark.id !== id);
+    console.log(STORE.bookmarks);
+    let foundItem = this.bookmarks.find(bookmark => bookmark.id === id);
+    console.log(foundItem);
+    return foundItem;
   };
 
 
@@ -59,6 +63,7 @@ const STORE = (function(){
     bookmarks: [],
     addBookmark,
     deleteBookmark,
+    findItemByID,
     setError,
     addItem: false,
     errorReturn: false,

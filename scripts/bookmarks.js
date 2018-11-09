@@ -57,16 +57,24 @@ const Bookmarks = (function (){
   }
 
   function generateItemElement (object){
-    // console.log(object);
-    return `
-    <li class='bookmark-item-element' data-item-id='${object.id}'>
-      <div>${object.title}</div>
-      <div>${object.rating}</div>
-      <div><a href="${object.url}">Visit Site</a></div>
-      <div>${object.desc}</div>
-      <button type="button" id="delete">Delete Bookmark</button>
-    </li>
+    console.log(object);
+    if (object.expanded){
+      return `
+      <li class='bookmark-item-element' data-item-id='${object.id}'>
+        <div>${object.title}</div>
+        <div>${object.rating}</div>
+        <div><a href="${object.url}">Visit Site</a></div>
+        <div>${object.desc}</div>
+        <button type="button" id="delete">Delete Bookmark</button>
+      </li>
     `;
+    } else {
+      return ` 
+        <li class='bookmark-item-element' data-item-id='${object.id}'>
+          <div>${object.title}</div>
+          <div>${object.rating}</div>
+        </li>`;
+    }
   }
 
   function render (){
@@ -121,26 +129,6 @@ const Bookmarks = (function (){
       return JSON.stringify(newObject);
     }
   });
-  
-  // function handleNewItemSubmit() {
-  //   $('#js-shopping-list-form').submit(function (event) {
-  //     event.preventDefault();
-  //     const newItemName = $('.js-shopping-list-entry').val();
-  //     $('.js-shopping-list-entry').val('');
-  //     api.createItem(newItemName, 
-  //       (newItem) => {
-  //         store.addItem(newItem);
-  //         render();
-  //       },
-  //       (err) => {
-  //         console.log(err);
-  //         store.setError(err);
-  //         render();
-  //       }
-  //     );
-  //   });
-  // }
-
 
 
   function newBookmarkForm(){
@@ -192,6 +180,18 @@ const Bookmarks = (function (){
       render();
     });
   }
+
+  function expandBookmarkOnClick (){
+    $('ul').on('click', 'li', function (event){
+      // console.log('listener fired');
+      const id = getItemIdFromElement(event.currentTarget);
+      // console.log(id);
+      console.log(STORE.findItemByID(id));
+      STORE.findItemByID(id).expanded = !STORE.findItemByID(id).expanded;
+      // console.log(STORE.findItemByID(id));
+      render();
+    });
+  }
   
   function getItemIdFromElement(item) {
     return $(item)
@@ -217,6 +217,7 @@ const Bookmarks = (function (){
     deleteBookmark();
     minimumRatingSubmit();
     minimumRatingClear();
+    expandBookmarkOnClick();
   }
   // $(newBookmarkSubmit);
 
