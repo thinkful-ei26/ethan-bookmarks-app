@@ -7,12 +7,12 @@ const API = (function (){
 
   const getBookmarks = function(callback) {
     $.getJSON(`${BASE_URL}`, callback);
-    console.log('getBookmarks call made');
+    // console.log('getBookmarks call made');
   };
 
   const createBookmark = function(newItemObject, callback, error) {
     // const newItem = JSON.stringify(newItemObject);
-    console.log(newItemObject);
+    // console.log(newItemObject);
     $.ajax({
       url: `${BASE_URL}`,
       method: 'POST',
@@ -24,7 +24,7 @@ const API = (function (){
   };
 
   const deleteBookmark = function(id, callback){
-    console.log('delete API fired');
+    // console.log('delete API fired');
     $.ajax({
       url: `${BASE_URL}/${id}`,
       method: 'DELETE',

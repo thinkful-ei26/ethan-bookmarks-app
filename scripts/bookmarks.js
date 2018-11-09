@@ -129,7 +129,7 @@ const Bookmarks = (function (){
   function newBookmarkForm(){
     $('#add-bookmark').on('click', function(){
       STORE.addItem = true;
-      console.log(STORE.addItem);
+      // console.log(STORE.addItem);
       render();
     });
   }
@@ -149,7 +149,7 @@ const Bookmarks = (function (){
         render();
       }, 
       function (err) {
-        console.log(err);
+        // console.log(err);
         STORE.setError(err);
         render();
       }
@@ -161,7 +161,7 @@ const Bookmarks = (function (){
     $('.new-item-form-container').on('click', '#hide', function(){
       STORE.addItem = false;
       STORE.setError(null);
-      console.log(STORE.setError);
+      // console.log(STORE.setError);
       render();
     });
   }
@@ -190,7 +190,7 @@ const Bookmarks = (function (){
       // console.log('listener fired');
       const id = getItemIdFromElement(event.currentTarget);
       // console.log(id);
-      console.log(STORE.findItemByID(id));
+      // console.log(STORE.findItemByID(id));
       STORE.findItemByID(id).expanded = !STORE.findItemByID(id).expanded;
       // console.log(STORE.findItemByID(id));
       render();
@@ -205,7 +205,7 @@ const Bookmarks = (function (){
 
   function deleteBookmark(){
     $('ul').on('click', '#delete', function(event){
-      console.log('delete handler worked');
+      // console.log('delete handler worked');
       const id = getItemIdFromElement(event.currentTarget);
       API.deleteBookmark(id, function (){
         STORE.deleteBookmark(id);
