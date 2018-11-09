@@ -185,7 +185,13 @@ const Bookmarks = (function (){
     });
   }
 
-  function minimumRatingClear()
+  function minimumRatingClear(){
+    $('#clear-minimum-value').click(function(){
+      // console.log('clear rating listener fired');
+      STORE.minimumRating = null;
+      render();
+    });
+  }
   
   function getItemIdFromElement(item) {
     return $(item)
@@ -210,6 +216,7 @@ const Bookmarks = (function (){
     newBookmarkSubmit();
     deleteBookmark();
     minimumRatingSubmit();
+    minimumRatingClear();
   }
   // $(newBookmarkSubmit);
 
