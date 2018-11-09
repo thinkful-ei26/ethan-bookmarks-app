@@ -42,6 +42,7 @@ const STORE = (function(){
 
   const addBookmark = function(bookmark){
     bookmark.expanded = false;
+    bookmark.update = false;
     STORE.bookmarks.push(bookmark);
     // console.log(STORE.bookmarks);
   };

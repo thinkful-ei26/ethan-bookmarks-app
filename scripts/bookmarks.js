@@ -56,23 +56,46 @@ const Bookmarks = (function (){
     return stringifiedBookmarks.join('');
   }
 
-  function generateItemElement (object){
-    console.log(object);
-    if (object.expanded){
+  function generateItemElement (bookmark){
+    // console.log(bookmark);
+    if (bookmark.expanded && bookmark.update){
       return `
-      <li class='bookmark-item-element' data-item-id='${object.id}'>
-        <div>${object.title}</div>
-        <div>${object.rating}</div>
-        <div><a href="${object.url}">Visit Site</a></div>
-        <div>${object.desc}</div>
-        <button type="button" id="delete">Delete Bookmark</button>
-      </li>
+      <li class='bookmark-item-element' data-item-id='${bookmark.id}'>
+      <div>${bookmark.title}</div>
+      <div>Rating: ${bookmark.rating} Stars</div>
+      <div><a href="${bookmark.url}">Visit Site</a></div>
+      <div>${bookmark.desc}</div>
+      <button type="button" id="delete">Delete Bookmark</button>
+      <form action="update-bookmark">
+        <label for="description">Update Description</label>
+          <input type="text" name="description" id="description" placeholder="A simple description..."><br>
+        <label for="rating">Update Rating</label>
+          <input type="radio" name="rating" id="rating-5" value="5"> 5 <br>
+          <input type="radio" name="rating" id="rating-4" value="4"> 4 <br>
+          <input type="radio" name="rating" id="rating-3" value="3"> 3 <br>
+          <input type="radio" name="rating" id="rating-2" value="2"> 2 <br>
+          <input type="radio" name="rating" id="rating-1" value="1"> 1 <br>
+        <input type="submit" id="update-bookmark" value="Submit">
+      </form>
+    </li>
     `;
+    } else if (bookmark.expanded){
+      return `
+        <li class='bookmark-item-element' data-item-id='${bookmark.id}'>
+          <div>${bookmark.title}</div>
+          <div>Rating: ${bookmark.rating} Stars</div>
+          <div><a href="${bookmark.url}">Visit Site</a></div>
+          <div>${bookmark.desc}</div>
+          <button type="button" id="update">Update Bookmark</button>
+          <button type="button" id="delete">Delete Bookmark</button>
+        </li>
+        `;
     } else {
       return ` 
-        <li class='bookmark-item-element' data-item-id='${object.id}'>
-          <div>${object.title}</div>
-          <div>${object.rating}</div>
+        <li class='bookmark-item-element' data-item-id='${bookmark.id}'>
+          <div>${bookmark.title}</div>
+          <div>Rating: ${bookmark.rating} Stars</div>
+          <button type="button" id="expand">See More Info</button>
         </li>`;
     }
   }
@@ -182,7 +205,7 @@ const Bookmarks = (function (){
   }
 
   function expandBookmarkOnClick (){
-    $('ul').on('click', 'li', function (event){
+    $('ul').on('click', '#expand', function (event){
       // console.log('listener fired');
       const id = getItemIdFromElement(event.currentTarget);
       // console.log(id);
@@ -197,6 +220,16 @@ const Bookmarks = (function (){
     return $(item)
       .closest('.bookmark-item-element')
       .data('item-id');
+  }
+
+  function updateBookmark(){
+    $('ul').on('click', '#update', function(){
+      console.log('update listener fired');
+      const id = getItemIdFromElement(event.currentTarget);
+      console.log(id);
+      STORE.findItemByID(id).update = !STORE.findItemByID(id).update;
+      render();
+    });
   }
 
   function deleteBookmark(){
@@ -218,6 +251,7 @@ const Bookmarks = (function (){
     minimumRatingSubmit();
     minimumRatingClear();
     expandBookmarkOnClick();
+    updateBookmark();
   }
   // $(newBookmarkSubmit);
 

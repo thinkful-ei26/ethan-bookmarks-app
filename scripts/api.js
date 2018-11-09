@@ -23,6 +23,16 @@ const API = (function (){
     });
   };
 
+  const updateBookmark = function (id, updateData, callback){
+    $.ajax({
+      url: `${BASE_URL}/${id}`,
+      method: 'PATCH',
+      contentType: 'application/JSON',
+      data: JSON.stringify(updateData),
+      success: callback
+    });
+  };
+
   const deleteBookmark = function(id, callback){
     console.log('delete API fired');
     $.ajax({
@@ -36,6 +46,7 @@ const API = (function (){
   return{
     getBookmarks,
     createBookmark,
+    updateBookmark,
     deleteBookmark
   };
 }());

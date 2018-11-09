@@ -1,6 +1,26 @@
 <li class='bookmark-item-element' data-item-id='${object.id}'>
     <div>${object.title}</div>
-    <div>${object.rating}</div>
+    <div>Rating: ${object.rating} Stars</div>
+    <div><a href="${object.url}">Visit Site</a></div>
+    <div>${object.desc}</div>
+    <button type="button" id="delete">Delete Bookmark</button>
+    <form action="update-bookmark">
+      <label for="description">Update Description</label>
+        <input type="text" name="description" id="description" placeholder="A simple description...">
+      <label for="rating">Update Rating</label>
+        <input type="radio" name="rating" id="rating-5" value="5"> 5 <br>
+        <input type="radio" name="rating" id="rating-4" value="4"> 4 <br>
+        <input type="radio" name="rating" id="rating-3" value="3"> 3 <br>
+        <input type="radio" name="rating" id="rating-2" value="2"> 2 <br>
+        <input type="radio" name="rating" id="rating-1" value="1"> 1 <br>
+      <input type="submit" id="update-bookmark" value="Submit">
+    </form>
+  </li>
+
+
+  <li class='bookmark-item-element' data-item-id='${object.id}'>
+    <div>${object.title}</div>
+    <div>Rating: ${object.rating} Stars</div>
     <div><a href="${object.url}">Visit Site</a></div>
     <div>${object.desc}</div>
     <button type="button" id="delete">Delete Bookmark</button>
