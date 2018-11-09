@@ -9,27 +9,29 @@
 </head>
 <body>
   <h1>My Bookmarks</h1>
-  <button type="button" name="add-bookmark">Add A Bookmark</button>
-  <form id="new-item" name="new-item" for="">
-    <label for="title">Title</label> 
-      <input type="text" name="title" id="title" placeholder="Deadspin"><br>
-    <label for="url">URL</label> 
-      <input type="text" name="url" id="url" placeholder="deadspin.com"><br>
-    <label for="description">Description</label>
-      <input type="text" name="desc" id="description" placeholder="A simple description"><br>
-    <label for="rating">Rating</label><br>
-    <!-- tab index for the radio buttons so users can tab through -->
-      <input type="radio" name="rating" id="rating-5" value="5"> 5 <br>
-      <input type="radio" name="rating" id="rating-4" value="4"> 4 <br>
-      <input type="radio" name="rating" id="rating-3" value="3"> 3 <br>
-      <input type="radio" name="rating" id="rating-2" value="2"> 2 <br>
-      <input type="radio" name="rating" id="rating-1" value="1"> 1 <br>
-    <input type="submit" id="new-item" value="Submit">
-  </form>
+  <button type="button" name="add-bookmark" id="add-bookmark">Add A Bookmark</button>
+  <div class="new-item-form-container">
+    <!-- <form id="new-item" name="new-item" for="">
+      <label for="title">Title</label> 
+        <input type="text" name="title" id="title" placeholder="Deadspin"><br>
+      <label for="url">URL</label> 
+        <input type="text" name="url" id="url" placeholder="deadspin.com"><br>
+      <label for="description">Description</label>
+        <input type="text" name="desc" id="description" placeholder="A simple description"><br>
+      <label for="rating">Rating</label><br> -->
+      <!-- tab index for the radio buttons so users can tab through -->
+        <!-- <input type="radio" name="rating" id="rating-5" value="5"> 5 <br>
+        <input type="radio" name="rating" id="rating-4" value="4"> 4 <br>
+        <input type="radio" name="rating" id="rating-3" value="3"> 3 <br>
+        <input type="radio" name="rating" id="rating-2" value="2"> 2 <br>
+        <input type="radio" name="rating" id="rating-1" value="1"> 1 <br>
+      <input type="submit" id="new-item" value="Submit">
+    </form> -->
+  </div>
   <div class="error-container"></div>
   <br><br>
-  <form> Minimum Rating
-    <select name="minimum-value">
+  <form id="minimum-rating-submit"> Minimum Rating
+    <select name="minimum-value" id="minimum-value">
       <option value="5">5</option>
       <option value="4">4</option>
       <option value="3">3</option>

@@ -52,18 +52,18 @@ const Bookmarks = (function (){
   function generateHTMLString (bookmarks){
     console.log(bookmarks);
     let stringifiedBookmarks = bookmarks.map(bookmark => generateItemElement(bookmark));
-    console.log(stringifiedBookmarks);
+    // console.log(stringifiedBookmarks);
     return stringifiedBookmarks.join('');
   }
 
   function generateItemElement (object){
-    console.log(object);
+    // console.log(object);
     return `
     <li class='bookmark-item-element' data-item-id='${object.id}'>
       <div>${object.title}</div>
       <div>${object.rating}</div>
-      <div>${object.url}</div>
-      <div>${object.description}</div>
+      <div>Visit Site:${object.url}</div>
+      <div>${object.desc}</div>
       <button type="button" id="delete">Delete Bookmark</button>
     </li>
     `;
@@ -71,12 +71,43 @@ const Bookmarks = (function (){
 
   function render (){
     if (STORE.error) {
-      const el = generateError(STORE.error);
-      $('.error-container').html(el);
+      const errorText = generateError(STORE.error);
+      $('.error-container').html(errorText);
     } else {
       $('.error-container').empty();
     }// const bookmarkString = generateHTMLString(STORE.bookmarks);
-    $('ul').html(generateHTMLString(STORE.bookmarks));
+    if (STORE.addItem){
+      $('.new-item-form-container').html(renderNewBookmarkForm);
+    } else {
+      $('.new-item-form-container').html('');
+    }
+    if (STORE.minimumRating){
+      const filteredMinBookmarks = STORE.bookmarks.filter(bookmark => bookmark.rating >= STORE.minimumRating);
+      $('ul').html(generateHTMLString(filteredMinBookmarks));
+    } else{
+      $('ul').html(generateHTMLString(STORE.bookmarks));
+    }
+  }
+
+  function renderNewBookmarkForm(){
+    return `
+    <form id="new-item" name="new-item" for="">
+    <label for="title">Title</label> 
+      <input type="text" name="title" id="title" placeholder="Deadspin"><br>
+    <label for="url">URL</label> 
+      <input type="text" name="url" id="url" placeholder="deadspin.com"><br>
+    <label for="description">Description</label>
+      <input type="text" name="desc" id="description" placeholder="A simple description"><br>
+    <label for="rating">Rating</label><br>
+    <!-- tab index for the radio buttons so users can tab through -->
+      <input type="radio" name="rating" id="rating-5" value="5"> 5 <br>
+      <input type="radio" name="rating" id="rating-4" value="4"> 4 <br>
+      <input type="radio" name="rating" id="rating-3" value="3"> 3 <br>
+      <input type="radio" name="rating" id="rating-2" value="2"> 2 <br>
+      <input type="radio" name="rating" id="rating-1" value="1"> 1 <br>
+    <input type="submit" id="new-item" value="Submit">
+  </form>
+    `;
   }
 
 
@@ -111,14 +142,26 @@ const Bookmarks = (function (){
   // }
 
 
+
+  function newBookmarkForm(){
+    $('#add-bookmark').on('click', function(){
+      STORE.addItem = true;
+      console.log(STORE.addItem);
+      render();
+    });
+  }
+
+
   function newBookmarkSubmit(){
     //console.log('new bookmark executed');
-    $('#new-item').on('submit', function(event){
+    $('.new-item-form-container').on('submit', '#new-item', function(event){
       event.preventDefault();
       // console.log('new item handler worked');
       const result = $(event.target).serializeJson();
       API.createBookmark(result, (newBookmark) => {
         STORE.addBookmark(newBookmark);
+        STORE.addItem = false;
+        console.log(STORE.addItem);
         render();
       }, 
       (err) => {
@@ -127,10 +170,21 @@ const Bookmarks = (function (){
         render();
       }
       );
-      console.log(result);
+      // console.log(result);
     });
   }
 
+  function minimumRatingSubmit(){
+    $('#minimum-rating-submit').on('submit', function(event){
+      // console.log('rating listener fired');
+      event.preventDefault();
+      const selectedRating = parseInt($(event.currentTarget).find('#minimum-value').val());
+      console.log(typeof selectedRating);
+      STORE.minimumRating = selectedRating;
+      render();
+    });
+  }
+  
   function getItemIdFromElement(item) {
     return $(item)
       .closest('.bookmark-item-element')
@@ -150,8 +204,10 @@ const Bookmarks = (function (){
 
 
   function bindEventListeners(){
+    newBookmarkForm();
     newBookmarkSubmit();
     deleteBookmark();
+    minimumRatingSubmit();
   }
   // $(newBookmarkSubmit);
 

@@ -62,7 +62,7 @@ const STORE = (function(){
     setError,
     addItem: false,
     errorReturn: false,
-    filteredByRating: null
+    minimumRating: null
   };
 
 }());
