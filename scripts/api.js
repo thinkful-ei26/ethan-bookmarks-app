@@ -28,7 +28,7 @@ const API = (function (){
       url: `${BASE_URL}/${id}`,
       method: 'PATCH',
       contentType: 'application/JSON',
-      data: JSON.stringify(updateData),
+      data: updateData,
       success: callback
     });
   };

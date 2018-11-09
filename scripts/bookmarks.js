@@ -67,9 +67,9 @@ const Bookmarks = (function (){
       <div>${bookmark.desc}</div>
       <button type="button" id="delete">Delete Bookmark</button>
       <form action="update-bookmark">
-        <label for="description">Update Description</label>
+        <label for="description">Update Description</label><br>
           <input type="text" name="description" id="description" placeholder="A simple description..."><br>
-        <label for="rating">Update Rating</label>
+        <label for="rating">Update Rating</label><br>
           <input type="radio" name="rating" id="rating-5" value="5"> 5 <br>
           <input type="radio" name="rating" id="rating-4" value="4"> 4 <br>
           <input type="radio" name="rating" id="rating-3" value="3"> 3 <br>
@@ -209,7 +209,7 @@ const Bookmarks = (function (){
       // console.log('listener fired');
       const id = getItemIdFromElement(event.currentTarget);
       // console.log(id);
-      console.log(STORE.findItemByID(id));
+      // console.log(STORE.findItemByID(id));
       STORE.findItemByID(id).expanded = !STORE.findItemByID(id).expanded;
       // console.log(STORE.findItemByID(id));
       render();
@@ -217,18 +217,32 @@ const Bookmarks = (function (){
   }
   
   function getItemIdFromElement(item) {
+    console.log($(item).closest('.bookmark-item-element'));
     return $(item)
       .closest('.bookmark-item-element')
       .data('item-id');
   }
 
   function updateBookmark(){
-    $('ul').on('click', '#update', function(){
-      console.log('update listener fired');
+    $('ul').on('click', '#update', function(event){
+      // console.log('update listener fired');
       const id = getItemIdFromElement(event.currentTarget);
-      console.log(id);
+      // console.log(id);
       STORE.findItemByID(id).update = !STORE.findItemByID(id).update;
       render();
+    });
+  }
+
+  function updateBookmarkSubmit(){
+    $('ul').on('submit', '#update-bookmark', function(event){
+      event.preventDefault();
+      console.log('update listener fired');
+      // const id = getItemIdFromElement(event.currentTarget);
+      // const updatedFields = $(event.target).serializeJson();
+      // API.updateBookmark(id, updatedFields, function(){
+      //   STORE.findItemByID(id).update = !STORE.findItemByID(id).update;
+      //   render();
+      // });
     });
   }
 
@@ -252,6 +266,7 @@ const Bookmarks = (function (){
     minimumRatingClear();
     expandBookmarkOnClick();
     updateBookmark();
+    updateBookmarkSubmit();
   }
   // $(newBookmarkSubmit);
 

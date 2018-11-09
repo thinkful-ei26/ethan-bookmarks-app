@@ -48,9 +48,9 @@ const STORE = (function(){
   };
 
   const findItemByID = function (id){
-    console.log(STORE.bookmarks);
+    // console.log(STORE.bookmarks);
     let foundItem = this.bookmarks.find(bookmark => bookmark.id === id);
-    console.log(foundItem);
+    // console.log(foundItem);
     return foundItem;
   };
 
