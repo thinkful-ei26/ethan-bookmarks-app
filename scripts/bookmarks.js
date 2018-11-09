@@ -58,24 +58,40 @@ const Bookmarks = (function (){
 
   function generateItemElement (object){
     console.log(object);
-    if (object.expanded){
+    if (object.expanded && object.rating){
       return `
       <li class='bookmark-item-element' data-item-id='${object.id}'>
         <div>${object.title}</div>
-        <div>${object.rating}</div>
+        <div>Rating: ${object.rating}</div>
         <div><a href="${object.url}">Visit Site</a></div>
         <div>${object.desc}</div>
         <button type="button" id="delete">Delete Bookmark</button>
       </li>
-    `;
+      `;
+    } else if(object.expanded && !object.rating){
+      return `
+      <li class='bookmark-item-element' data-item-id='${object.id}'>
+        <div>${object.title}</div>
+        <div>No rating yet :(</div>
+        <div><a href="${object.url}">Visit Site</a></div>
+        <div>${object.desc}</div>
+        <button type="button" id="delete">Delete Bookmark</button>
+      </li>
+      `;
+    } else if (object.rating) {
+      return ` 
+        <li class='bookmark-item-element' data-item-id='${object.id}'>
+          <div>${object.title}</div>
+          <div>Rating: ${object.rating}</div>
+        </li>`;
     } else {
       return ` 
         <li class='bookmark-item-element' data-item-id='${object.id}'>
           <div>${object.title}</div>
-          <div>${object.rating}</div>
+          <div>No rating yet :(</div>
         </li>`;
     }
-  }
+  } 
 
   function render (){
     if (STORE.error) {
