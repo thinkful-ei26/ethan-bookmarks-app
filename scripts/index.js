@@ -5,9 +5,9 @@
 $(document).ready(function() {
   Bookmarks.bindEventListeners();
   // Bookmarks.render(STORE.bookmarks);
-  API.getBookmarks((bookmarks) => {
+  API.getBookmarks((bookmarkItems) => {
     // console.log('api call made');
-    bookmarks.forEach((bookmark) => STORE.addBookmark(bookmark));
+    bookmarkItems.forEach((bookmark) => STORE.addBookmark(bookmark));
     Bookmarks.render();
   });
   //get items function will need to go here
