@@ -23,9 +23,8 @@ DONE I can select from a dropdown a "minimum rating" to filter the list by all b
 
 
 To do:
-Implement condensed view on initial load and expanded view upon clicking an item
-CONCERN: issues with handling bookmark object properties that aren't being passed to server?
-Give yourself until 11 on the extension stories, then spend at least 3 hours cleaning up HTML and CSS
+DONE Implement condensed view on initial load and expanded view upon clicking an item
+Done CONCERN: issues with handling bookmark object properties that aren't being passed to server?
+On separate branch - Give yourself until 11 on the extension stories, then spend at least 3 hours cleaning up HTML and CSS
 
-Clean up CSS and style buttons
-CONCERN: i hate CSS
+DONE Clean up CSS and style buttons 
