@@ -64,7 +64,7 @@ const Bookmarks = (function (){
         <ul>
           <li>${object.title}</li>
           <li>Rating: ${object.rating}</li>
-          <li><a href="${object.url}">Visit Site</a></li>
+          <li><a href="${object.url}" target="_blank">Visit Site</a></li>
           <li>${object.desc}</li>
           <li><button type="button" id="delete">Delete Bookmark</button></li>
         </ul>  
@@ -73,11 +73,13 @@ const Bookmarks = (function (){
     } else if(object.expanded && !object.rating){
       return `
       <li class='bookmark-item-element' data-item-id='${object.id}'>
-        <div>${object.title}</div>
-        <div>No rating yet :(</div>
-        <div><a href="${object.url}">Visit Site</a></div>
-        <div>${object.desc}</div>
-        <button type="button" id="delete">Delete Bookmark</button>
+        <ul>
+          <li>${object.title}</li>
+          <li>No rating yet :(</li>
+          <li><a href="${object.url}" target="_blank">Visit Site</a></li>
+          <li>${object.desc}</li>
+          <li><button type="button" id="delete">Delete Bookmark</button></li>
+        </ul>  
       </li>
       `;
     } else if (object.rating) {
@@ -119,7 +121,7 @@ const Bookmarks = (function (){
 
   function renderNewBookmarkForm(){
     return `
-    <form id="new-item" name="new-item" for="">
+    <form id="new-item" name="new-item">
     <label for="title">Title</label> 
       <input type="text" name="title" id="title" placeholder="Deadspin"><br>
     <label for="url">URL</label> 
