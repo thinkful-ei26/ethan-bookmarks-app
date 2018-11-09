@@ -62,7 +62,7 @@ const Bookmarks = (function (){
     <li class='bookmark-item-element' data-item-id='${object.id}'>
       <div>${object.title}</div>
       <div>${object.rating}</div>
-      <div>Visit Site:${object.url}</div>
+      <div><a href="${object.url}">Visit Site</a></div>
       <div>${object.desc}</div>
       <button type="button" id="delete">Delete Bookmark</button>
     </li>

@@ -19,4 +19,11 @@ DONE I can remove bookmarks from my bookmark list
 DONE I receive appropriate feedback when I cannot submit a bookmark
 Check all validations in the API documentation (e.g. title and url field required)
 
-I can select from a dropdown a "minimum rating" to filter the list by all bookmarks rated above the chosen selection
+DONE I can select from a dropdown a "minimum rating" to filter the list by all bookmarks rated above the chosen selection
+
+
+To do:
+Implement condensed view on initial load and expanded view upon clicking an item
+CONCERN: issues with handling bookmark object properties that aren't being passed to server?
+Clean up CSS and style buttons
+CONCERN: i hate CSS
