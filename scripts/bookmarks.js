@@ -179,11 +179,13 @@ const Bookmarks = (function (){
       // console.log('rating listener fired');
       event.preventDefault();
       const selectedRating = parseInt($(event.currentTarget).find('#minimum-value').val());
-      console.log(typeof selectedRating);
+      // console.log(typeof selectedRating);
       STORE.minimumRating = selectedRating;
       render();
     });
   }
+
+  function minimumRatingClear()
   
   function getItemIdFromElement(item) {
     return $(item)
