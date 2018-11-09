@@ -5,7 +5,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   background-image: url("https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0c21b1ac3066ae4d354a3b2e0064c8be&auto=format&fit=crop&w=1350&q=80");
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   color: white;
   font-family: 'Raleway', sans-serif;
 }
