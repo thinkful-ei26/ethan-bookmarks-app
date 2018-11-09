@@ -36,4 +36,11 @@ button:hover:disabled {
 
 li {
   list-style: none;
+  border: solid 5px;
+  width: 50%;
+  text-align: center
+}
+
+.error-containter {
+  color: red
 }

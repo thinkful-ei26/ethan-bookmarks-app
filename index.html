@@ -15,16 +15,18 @@
       <input type="text" name="title" id="title" placeholder="Deadspin"><br>
     <label for="url">URL</label> 
       <input type="text" name="url" id="url" placeholder="deadspin.com"><br>
-    <label for="description">Description</label> 
+    <label for="description">Description</label>
       <input type="text" name="desc" id="description" placeholder="A simple description"><br>
     <label for="rating">Rating</label><br>
-      <input type="radio" name="rating" id="rating" value="5"> 5 <br>
-      <input type="radio" name="rating" id="rating" value="4"> 4 <br>
-      <input type="radio" name="rating" id="rating" value="3"> 3 <br>
-      <input type="radio" name="rating" id="rating" value="2"> 2 <br>
-      <input type="radio" name="rating" id="rating" value="1"> 1 <br>
+    <!-- tab index for the radio buttons so users can tab through -->
+      <input type="radio" name="rating" id="rating-5" value="5"> 5 <br>
+      <input type="radio" name="rating" id="rating-4" value="4"> 4 <br>
+      <input type="radio" name="rating" id="rating-3" value="3"> 3 <br>
+      <input type="radio" name="rating" id="rating-2" value="2"> 2 <br>
+      <input type="radio" name="rating" id="rating-1" value="1"> 1 <br>
     <input type="submit" id="new-item" value="Submit">
   </form>
+  <div class="error-container"></div>
   <br><br>
   <form> Minimum Rating
     <select name="minimum-value">
@@ -35,7 +37,7 @@
       <option value="1">1</option>
     </select>
     <input type="submit">
-</form><br><br><br><br>
+</form><br><br>
 <section class="bookmark-results">
   <ul class="bookmark-item">
     <li class='bookmark-item-element' data-item-id='Item1 ID'>

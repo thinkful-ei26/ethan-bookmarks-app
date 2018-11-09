@@ -36,6 +36,10 @@ const STORE = (function(){
 
   //console.log(bookmarks);
 
+  const setError = function(error) {
+    this.error = error;
+  };
+
   const addBookmark = function(bookmark){
     STORE.bookmarks.push(bookmark);
     // console.log(STORE.bookmarks);
@@ -55,6 +59,7 @@ const STORE = (function(){
     bookmarks: [],
     addBookmark,
     deleteBookmark,
+    setError,
     addItem: false,
     errorReturn: false,
     filteredByRating: null

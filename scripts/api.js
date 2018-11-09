@@ -1,6 +1,6 @@
 'use strict';
 /*eslint-env jquery*/
-/* global store, API $ */
+/* global store, API, $ */
 
 const API = (function (){
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/ethan/bookmarks/';
@@ -10,7 +10,7 @@ const API = (function (){
     console.log('getBookmarks call made');
   };
 
-  const createBookmark = function(newItemObject, callback) {
+  const createBookmark = function(newItemObject, callback, error) {
     // const newItem = JSON.stringify(newItemObject);
     console.log(newItemObject);
     $.ajax({
@@ -19,7 +19,7 @@ const API = (function (){
       contentType: 'application/json',
       data: newItemObject,
       success: callback,
-      error: error => console.error(error.responseJSON.method)
+      error: error
     });
   };
 

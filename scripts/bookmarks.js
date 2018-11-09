@@ -36,6 +36,19 @@ const Bookmarks = (function (){
   //   }
   // ];
 
+  function generateError(err) {
+    let message = '';
+    if (err.responseJSON && err.responseJSON.message) {
+      message = err.responseJSON.message;
+    } else {
+      message = `${err.code} Server Error`;
+    }
+
+    return `
+        <p>${message}</p>
+    `;
+  }
+
   function generateHTMLString (bookmarks){
     console.log(bookmarks);
     let stringifiedBookmarks = bookmarks.map(bookmark => generateItemElement(bookmark));
@@ -57,7 +70,12 @@ const Bookmarks = (function (){
   }
 
   function render (){
-    // const bookmarkString = generateHTMLString(STORE.bookmarks);
+    if (STORE.error) {
+      const el = generateError(STORE.error);
+      $('.error-container').html(el);
+    } else {
+      $('.error-container').empty();
+    }// const bookmarkString = generateHTMLString(STORE.bookmarks);
     $('ul').html(generateHTMLString(STORE.bookmarks));
   }
 
@@ -72,19 +90,43 @@ const Bookmarks = (function (){
       return JSON.stringify(newObject);
     }
   });
-
+  
+  // function handleNewItemSubmit() {
+  //   $('#js-shopping-list-form').submit(function (event) {
+  //     event.preventDefault();
+  //     const newItemName = $('.js-shopping-list-entry').val();
+  //     $('.js-shopping-list-entry').val('');
+  //     api.createItem(newItemName, 
+  //       (newItem) => {
+  //         store.addItem(newItem);
+  //         render();
+  //       },
+  //       (err) => {
+  //         console.log(err);
+  //         store.setError(err);
+  //         render();
+  //       }
+  //     );
+  //   });
+  // }
 
 
   function newBookmarkSubmit(){
     //console.log('new bookmark executed');
     $('#new-item').on('submit', function(event){
       event.preventDefault();
-      console.log('new item handler worked');
+      // console.log('new item handler worked');
       const result = $(event.target).serializeJson();
       API.createBookmark(result, (newBookmark) => {
         STORE.addBookmark(newBookmark);
         render();
-      });
+      }, 
+      (err) => {
+        console.log(err);
+        STORE.setError(err);
+        render();
+      }
+      );
       console.log(result);
     });
   }
